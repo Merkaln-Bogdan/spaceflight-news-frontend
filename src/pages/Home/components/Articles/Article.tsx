@@ -1,38 +1,58 @@
-import Typography from "@mui/material/Typography";
-import { CardMedia } from "@mui/material";
-
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import { ArticleType } from "types/article.type";
 import { Link } from "react-router-dom";
+import Highlighter from "react-highlight-words";
+import moment from "moment";
+
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
+
+import { Button } from "components/Button";
+import { ArticleType } from "types/article.type";
 
 type ArticleProps = {
   article: ArticleType;
+  searchValues: string;
 };
 
 const Article = (props: ArticleProps) => {
-  const { article } = { ...props };
+  const {
+    article: { id, updatedAt, imageUrl, summary, newsSite, title },
+    searchValues,
+  } = { ...props };
+
+  function truncate(str: string) {
+    return str.length > 100 ? str.slice(0, 100 - 1) + "…" : str;
+  }
 
   return (
-    <Link to={`/${article.id}`}>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          sx={{ height: 140 }}
-          image={article.imageUrl}
-          title="green iguana"
-        />
+    <Link to={`/${id}`}>
+      <Card sx={{ maxWidth: 345, height: 512 }}>
+        <CardMedia sx={{ height: 217 }} image={imageUrl} title={newsSite} />
         <CardContent>
+          <Typography>{moment(updatedAt).format("MMMM Do YYYY")}</Typography>
           <Typography gutterBottom variant="h5" component="div">
-            {article.title}
+            <Highlighter
+              highlightClassName="YourHighlightClass"
+              searchWords={searchValues.split(" ")}
+              autoEscape={true}
+              textToHighlight={truncate(title)}
+            />
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {article.summary}
+            <Highlighter
+              highlightClassName="YourHighlightClass"
+              searchWords={searchValues.split(" ")}
+              autoEscape={true}
+              textToHighlight={truncate(summary)}
+            />
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Read more</Button>
+          <Button>Read more</Button>
         </CardActions>
       </Card>
     </Link>

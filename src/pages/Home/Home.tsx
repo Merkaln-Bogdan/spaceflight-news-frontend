@@ -1,25 +1,43 @@
-import axios from "axios";
-
-import { Container } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Container, Grid } from "@mui/material";
 
 import { Article } from "./components/Articles";
 import { ArticleType } from "types/article.type";
+import { Filter } from "./components/Filter";
+import { useHomePage } from "./Home.hooks";
 
 const HomePage = () => {
-  const [articles, setArticles] = useState<any>([]);
-  useEffect(() => {
-    axios
-      .get("https://api.spaceflightnewsapi.net/v3/articles")
-      .then((res) => setArticles(res.data));
-  }, []);
-  console.log(articles);
+  const {
+    articles,
+    setFilteredArticles,
+    filteredArticles,
+    filterValue,
+    setFilterValue,
+  } = useHomePage();
+
   return (
     <Container>
-      {articles &&
-        articles.map((item: ArticleType) => (
-          <Article article={item} key={item.id} />
-        ))}
+      <Filter
+        setFilter={setFilteredArticles}
+        data={articles}
+        setValues={setFilterValue}
+        values={filterValue}
+      />
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 4, sm: 8, md: 12 }}
+      >
+        {filteredArticles &&
+          filteredArticles.map((item: ArticleType) => (
+            <Grid item xs={2} sm={4} md={4} key={item.id}>
+              <Article
+                article={item}
+                key={item.id}
+                searchValues={filterValue}
+              />
+            </Grid>
+          ))}
+      </Grid>
     </Container>
   );
 };

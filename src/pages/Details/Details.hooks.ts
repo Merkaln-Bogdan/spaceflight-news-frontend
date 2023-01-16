@@ -8,12 +8,12 @@ import { useParams } from "react-router-dom";
 const useDetails = () => {
   const { articleId } = useParams();
   const [article, setArticle] = useState<ArticleType>();
-  console.log(article);
+
   useEffect(() => {
     axios
       .get(`https://api.spaceflightnewsapi.net/v3/articles/${articleId}`)
       .then((res) => setArticle(res.data));
-  }, []);
+  }, [articleId]);
 
   return { article };
 };

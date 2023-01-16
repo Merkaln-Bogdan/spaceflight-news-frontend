@@ -1,7 +1,9 @@
 type ArticleType = {
-  imageUrl: string | undefined;
+  updatedAt: any;
+  imageUrl: string;
   summary: string;
   title: string;
+  newsSite: string;
   id: string;
 };
 
