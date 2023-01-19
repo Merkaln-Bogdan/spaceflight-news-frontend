@@ -1,10 +1,12 @@
 import { Grid, Typography } from "@mui/material";
 
-import { Article } from "./components/Articles";
-import { ArticleType } from "types/article.type";
-import { Filter } from "./components/Filter";
-import { useHomePage } from "./Home.hooks";
 import { Layout } from "sections/Layout";
+import { Article } from "./components/Articles";
+import { Filter } from "./components/Filter";
+
+import { ArticleType } from "types/article.type";
+
+import { useHomePage } from "./Home.hooks";
 
 const HomePage = (): React.ReactElement => {
   const {
@@ -25,7 +27,10 @@ const HomePage = (): React.ReactElement => {
       />
 
       {filterValue && (
-        <Typography sx={{ mb: 2, mt: 2, fontWeight: 600 }}>
+        <Typography
+          sx={{ mb: "45px", mt: 2, borderBottom: "1px solid #eaeaea" }}
+          fontWeight="600"
+        >
           Results: {filteredArticles.length}
         </Typography>
       )}

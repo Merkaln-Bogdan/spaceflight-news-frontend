@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
+
 import { Box } from "@mui/system";
+import { CardContent, Paper, Typography } from "@mui/material";
 
-import Typography from "@mui/material/Typography";
-import { CardContent, Paper } from "@mui/material";
-
+import { Layout } from "sections/Layout";
 import { Button } from "components/Button";
+import { SvgIcon } from "components/SvgIcon";
 
 import { useDetails } from "./Details.hooks";
-import { Layout } from "sections/Layout";
+
 import { addionalText } from "./additionalText";
-import { SvgIcon } from "components/SvgIcon";
 
 const Details = (): React.ReactElement => {
   const { article } = useDetails();

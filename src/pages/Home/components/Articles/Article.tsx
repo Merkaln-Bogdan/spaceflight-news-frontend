@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import Highlighter from "react-highlight-words";
 import moment from "moment";
+import Highlighter from "react-highlight-words";
+import { Link } from "react-router-dom";
 
 import {
   Card,
@@ -32,15 +32,56 @@ const Article = (props: ArticleProps) => {
 
   return (
     <Link to={`/${id}`}>
-      <Card sx={{ position: "relative", maxWidth: 400, height: 512 }}>
+      <Card
+        sx={{
+          position: "relative",
+          maxWidth: 400,
+          height: 530,
+          boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.05)",
+        }}
+      >
         <CardMedia sx={{ height: 217 }} image={imageUrl} title={newsSite} />
         <CardContent>
-          <Typography>{moment(updatedAt).format("MMMM Do YYYY")}</Typography>
+          <Typography sx={{ mt: "25px" }} fontSize="14px">
+            <SvgIcon
+              viewbox="0 -1 16 16"
+              styles={{ width: "18px", height: "16px" }}
+            >
+              <svg fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 2.66675H3.99999C2.52724 2.66675 1.33333 3.86066 1.33333 5.33341V12.0001C1.33333 13.4728 2.52724 14.6667 3.99999 14.6667H12C13.4728 14.6667 14.6667 13.4728 14.6667 12.0001V5.33341C14.6667 3.86066 13.4728 2.66675 12 2.66675Z"
+                  stroke="#363636"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M5.33333 1.33337V4.00004"
+                  stroke="#363636"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M10.6667 1.33337V4.00004"
+                  stroke="#363636"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M1.33333 6.66675H14.6667"
+                  stroke="#363636"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </SvgIcon>
+            {moment(updatedAt).format("MMMM Do YYYY")}
+          </Typography>
           <Typography
             gutterBottom
             variant="h5"
             component="div"
-            sx={{ maxHeight: "125px", overflow: "hidden" }}
+            sx={{ maxHeight: "90px", mt: "24px", overflow: "hidden" }}
+            color="#363636"
           >
             <Highlighter
               highlightClassName="YourHighlightClass"
@@ -49,7 +90,7 @@ const Article = (props: ArticleProps) => {
               textToHighlight={truncate(title)}
             />
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" sx={{ m: "20px 0" }}>
             <Highlighter
               highlightClassName="YourHighlightClass"
               searchWords={searchValues.split(" ")}
@@ -59,7 +100,7 @@ const Article = (props: ArticleProps) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button styles={{ position: "absolute", bottom: 0 }}>
+          <Button styles={{ position: "absolute", bottom: 25 }}>
             Read more
             <SvgIcon>
               <path

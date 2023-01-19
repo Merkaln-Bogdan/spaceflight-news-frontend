@@ -12,26 +12,36 @@ type FilterProps = {
   data: ArticleType[];
 };
 
+const defaultProps: Partial<FilterProps> = {
+  setFilter: undefined,
+  setValues: undefined,
+  values: "",
+  data: [],
+};
+
 const Filter = (props: FilterProps): React.ReactElement => {
-  const { setFilter, data, setValues, values } = { ...props };
+  const { setFilter, data, setValues, values } = { ...defaultProps, ...props };
 
   useEffect(() => {
     if (values.length > 0) {
-      const filteredData = data.filter(
-        (el) =>
-          el.title
-            .toLowerCase()
-            .includes(
-              values.split(" ").find((el) => el.toLocaleLowerCase()) ||
-                values.toLocaleLowerCase()
-            ) &&
-          el.summary
-            .toLowerCase()
-            .includes(
-              values.split(" ").find((el) => el.toLocaleLowerCase()) ||
-                values.toLocaleLowerCase()
-            )
-      );
+      const filteredData = data.filter((el) => {
+        return (
+          el.title.toLowerCase().includes(
+            values
+              .toLocaleLowerCase()
+              .split(" ")
+              .find((el) => el.toLocaleLowerCase()) ||
+              values.toLocaleLowerCase()
+          ) ||
+          el.summary.toLowerCase().includes(
+            values
+              .toLocaleLowerCase()
+              .split(" ")
+              .find((el) => el.toLocaleLowerCase()) ||
+              values.toLocaleLowerCase()
+          )
+        );
+      });
 
       setFilter(filteredData);
     } else {
