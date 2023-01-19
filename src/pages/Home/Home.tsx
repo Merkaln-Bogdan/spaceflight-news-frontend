@@ -1,11 +1,12 @@
-import { Container, Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 import { Article } from "./components/Articles";
 import { ArticleType } from "types/article.type";
 import { Filter } from "./components/Filter";
 import { useHomePage } from "./Home.hooks";
+import { Layout } from "sections/Layout";
 
-const HomePage = () => {
+const HomePage = (): React.ReactElement => {
   const {
     articles,
     setFilteredArticles,
@@ -15,13 +16,19 @@ const HomePage = () => {
   } = useHomePage();
 
   return (
-    <Container>
+    <Layout>
       <Filter
         setFilter={setFilteredArticles}
         data={articles}
         setValues={setFilterValue}
         values={filterValue}
       />
+
+      {filterValue && (
+        <Typography sx={{ mb: 2, mt: 2, fontWeight: 600 }}>
+          Results: {filteredArticles.length}
+        </Typography>
+      )}
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -38,7 +45,7 @@ const HomePage = () => {
             </Grid>
           ))}
       </Grid>
-    </Container>
+    </Layout>
   );
 };
 
