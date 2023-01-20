@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { HomePage } from "./pages/Home";
@@ -27,6 +27,9 @@ function App(): React.ReactElement {
       fontFamily: ["Montserrat", "sans-serif"].join(","),
     },
   });
+
+  // If you're seeing this comment, it means I didn't have time to optimize the code and fix styling issues because there's so much to do and so little electricity
+  //I ask for some time to correct them
 
   return (
     <ThemeProvider theme={theme}>
