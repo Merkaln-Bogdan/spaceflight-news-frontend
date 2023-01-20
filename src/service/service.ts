@@ -2,7 +2,11 @@ import axios from "axios";
 
 class ArticlesDataService {
   public async getAllArticles() {
-    return axios.get("https://api.json-generator.com");
+    try {
+      return axios.get("https://api.json-generator.com");
+    } catch (err) {
+      throw err;
+    }
   }
 }
 

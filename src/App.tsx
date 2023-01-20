@@ -12,7 +12,7 @@ import { routes } from "./data/routes";
 // import { articlesDataService } from "service/service";
 
 function App(): React.ReactElement {
-  // FETCHING DATA IF WE USE REDUX
+  //Comments for implement FETCHING DATA IF WE USE REDUX
 
   // const dispatch = useAppDispatch();
 
@@ -29,7 +29,7 @@ function App(): React.ReactElement {
   });
 
   // If you're seeing this comment, it means I didn't have time to optimize the code and fix styling issues because there's so much to do and so little electricity
-  //I ask for some time to correct them
+  // I ask for some time to correct them
 
   return (
     <ThemeProvider theme={theme}>

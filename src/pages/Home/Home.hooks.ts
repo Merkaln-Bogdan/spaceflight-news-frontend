@@ -13,9 +13,13 @@ const useHomePage = () => {
   // const articlesList = useAppSelector(articlesSelector.selectAll);
 
   useEffect(() => {
-    axios
-      .get("https://api.spaceflightnewsapi.net/v3/articles")
-      .then((res) => setArticles(res.data));
+    try {
+      axios
+        .get("https://api.spaceflightnewsapi.net/v3/articles")
+        .then((res) => setArticles(res.data));
+    } catch (err) {
+      throw new Error();
+    }
   }, []);
 
   return {

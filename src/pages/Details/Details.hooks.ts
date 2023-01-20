@@ -10,9 +10,13 @@ const useDetails = () => {
   const [article, setArticle] = useState<ArticleType>();
 
   useEffect(() => {
-    axios
-      .get(`https://api.spaceflightnewsapi.net/v3/articles/${articleId}`)
-      .then((res) => setArticle(res.data));
+    try {
+      axios
+        .get(`https://api.spaceflightnewsapi.net/v3/articles/${articleId}`)
+        .then((res) => setArticle(res.data));
+    } catch (err) {
+      throw err;
+    }
   }, [articleId]);
 
   return { article };
