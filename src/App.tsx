@@ -1,4 +1,4 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { HomePage } from "./pages/Home";
@@ -7,20 +7,31 @@ import { createTheme, ThemeProvider } from "@mui/material";
 
 import { routes } from "./data/routes";
 
-// import { useAppDispatch } from "redux/hooks";
-// import { setAllArticles } from "redux/slices/article.slice";
-// import { articlesDataService } from "service/service";
+import { useAppDispatch } from "redux/hooks";
+import { setAllArticles } from "redux/slices/article.slice";
+import { articlesDataService } from "service/service";
 
 function App(): React.ReactElement {
-  //Comments for implement FETCHING DATA IF WE USE REDUX
-
-  // const dispatch = useAppDispatch();
-
+  // We can fetching directly here
   // useEffect(() => {
-  //   articlesDataService
-  //     .getAllArticles()
-  //     .then((res) => dispatch(setAllArticles(res.data)));
-  // }, [dispatch]);
+  //   try {
+  //     axios
+  //       .get("https://api.spaceflightnewsapi.net/v3/articles")
+  //       .then((res) => setArticles(res.data));
+  //   } catch (err) {
+  //     throw new Error();
+  //   }
+  // }, []);
+
+  //OR FETCHING DATA IF WE USE REDUX
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    articlesDataService
+      .getAllArticles()
+      .then((res) => dispatch(setAllArticles(res.data)));
+  }, [dispatch]);
 
   const theme = createTheme({
     typography: {

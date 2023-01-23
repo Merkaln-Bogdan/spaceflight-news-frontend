@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 
-import axios from "axios";
-
 import { ArticleType } from "types/article.type";
 import { useParams } from "react-router-dom";
+import { articlesDataService } from "service/service";
 
 const useDetails = () => {
   const { articleId } = useParams();
@@ -11,8 +10,8 @@ const useDetails = () => {
 
   useEffect(() => {
     try {
-      axios
-        .get(`https://api.spaceflightnewsapi.net/v3/articles/${articleId}`)
+      articlesDataService
+        .getAtricle(articleId!)
         .then((res) => setArticle(res.data));
     } catch (err) {
       throw err;

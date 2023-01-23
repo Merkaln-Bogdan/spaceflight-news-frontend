@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { Box } from "@mui/system";
-import { CardContent, Paper, Typography } from "@mui/material";
+import { Paper } from "@mui/material";
 
 import { Layout } from "sections/Layout";
 import { Button } from "components/Button";
@@ -9,7 +8,8 @@ import { SvgIcon } from "components/SvgIcon";
 
 import { useDetails } from "./Details.hooks";
 
-import { addionalText } from "./additionalText";
+import { Text } from "components/Text";
+import { TextCard } from "./components/TextCard";
 
 const Details = (): React.ReactElement => {
   const { article } = useDetails();
@@ -23,9 +23,8 @@ const Details = (): React.ReactElement => {
       backgroundPosition: "center",
     },
   };
-
   return !article ? (
-    <Typography sx={{ textAlign: "center" }}>Loading...</Typography>
+    <Text styles={{ textAlign: "center" }}>Loading...</Text>
   ) : (
     <Layout>
       <Paper
@@ -35,37 +34,7 @@ const Details = (): React.ReactElement => {
           height: "245px",
         }}
       />
-      <Box
-        sx={{
-          mt: "-100px",
-          mr: "75px",
-          ml: "75px",
-          pr: "75px",
-          pl: "75px",
-          backgroundColor: "#ffffff",
-          border: " 1px solid #eaeaea",
-          boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.05)",
-        }}
-      >
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{
-              textAlign: "center",
-              mt: "35px",
-              mb: "50px",
-              fontSize: "24px",
-            }}
-          >
-            {article?.title}
-          </Typography>
-          <Typography variant="body2">
-            {article?.summary + addionalText}
-          </Typography>
-        </CardContent>
-      </Box>
+      <TextCard data={article} />
       <Button
         handleClick={() => navigate(-1)}
         styles={{ mt: "43px", ml: "168px" }}

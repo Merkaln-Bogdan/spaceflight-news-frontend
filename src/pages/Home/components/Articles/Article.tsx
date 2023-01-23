@@ -11,8 +11,9 @@ import {
 } from "@mui/material";
 
 import { SvgIcon } from "components/SvgIcon";
-
 import { Button } from "components/Button";
+import { Text } from "components/Text";
+
 import { ArticleType } from "types/article.type";
 
 type ArticleProps = {
@@ -42,7 +43,7 @@ const Article = (props: ArticleProps) => {
       >
         <CardMedia sx={{ height: 217 }} image={imageUrl} title={newsSite} />
         <CardContent>
-          <Typography sx={{ mt: "25px" }} fontSize="14px">
+          <Text styles={{ mt: "25px" }}>
             <SvgIcon
               viewbox="0 -1 16 16"
               styles={{ width: "18px", height: "16px" }}
@@ -75,7 +76,7 @@ const Article = (props: ArticleProps) => {
               </svg>
             </SvgIcon>
             {moment(updatedAt).format("MMMM Do YYYY")}
-          </Typography>
+          </Text>
           <Typography
             gutterBottom
             variant="h5"

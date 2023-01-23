@@ -1,12 +1,14 @@
-import Typography from "@mui/material/Typography";
 import { InputAdornment, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { Search } from "@mui/icons-material";
-import { useEffect } from "react";
+
+import { Text } from "components/Text";
+
 import { ArticleType } from "types/article.type";
+import { useFilter } from "./Filter.hooks";
 
 type FilterProps = {
-  setFilter: (arg: any) => void;
+  setFilter: (arg: ArticleType[]) => void;
   setValues: (arg: string) => void;
   values: string;
   data: ArticleType[];
@@ -21,38 +23,12 @@ const defaultProps: Partial<FilterProps> = {
 
 const Filter = (props: FilterProps): React.ReactElement => {
   const { setFilter, data, setValues, values } = { ...defaultProps, ...props };
-
-  useEffect(() => {
-    if (values.length > 0) {
-      const filteredData = data.filter((el) => {
-        return (
-          el.title.toLowerCase().includes(
-            values
-              .toLocaleLowerCase()
-              .split(" ")
-              .find((el) => el.toLocaleLowerCase()) ||
-              values.toLocaleLowerCase()
-          ) ||
-          el.summary.toLowerCase().includes(
-            values
-              .toLocaleLowerCase()
-              .split(" ")
-              .find((el) => el.toLocaleLowerCase()) ||
-              values.toLocaleLowerCase()
-          )
-        );
-      });
-
-      setFilter(filteredData);
-    } else {
-      setFilter(data);
-    }
-  }, [values, data, setFilter]);
-
+  useFilter(setFilter, data, values);
   return (
     <Box>
-      <Typography sx={{ fontWeight: 600 }}>Filter by keywords</Typography>
+      <Text>Filter by keywords</Text>
       <TextField
+        id="outlined-password-input"
         onChange={(e) => setValues(e.target.value)}
         InputProps={{
           startAdornment: (

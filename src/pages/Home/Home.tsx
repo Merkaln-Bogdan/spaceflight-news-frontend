@@ -1,4 +1,6 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
+
+import { Text } from "components/Text";
 
 import { Layout } from "sections/Layout";
 import { Article } from "./components/Articles";
@@ -27,16 +29,13 @@ const HomePage = (): React.ReactElement => {
       />
 
       {filterValue && (
-        <Typography
-          sx={{ mb: "45px", mt: 2, borderBottom: "1px solid #eaeaea" }}
-          fontWeight="600"
-        >
+        <Text styles={{ mb: "45px", mt: 2, borderBottom: "1px solid #eaeaea" }}>
           Results: {filteredArticles.length}
-        </Typography>
+        </Text>
       )}
       <Grid
         container
-        spacing={{ xs: 2, md: 3 }}
+        spacing={{ xs: 2, md: 6 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {filteredArticles &&
