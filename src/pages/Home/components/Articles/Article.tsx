@@ -40,7 +40,7 @@ const Article = (props: ArticleProps) => {
       >
         <CardMedia sx={{ height: 217 }} image={imageUrl} title={newsSite} />
         <CardContent>
-          <Text styles={{ mt: "25px" }}>
+          <Text styles={{ mt: "25px", fontSize: "14px", fontWeight: 200 }}>
             <SvgIcon
               viewbox="0 -1 16 16"
               styles={{ width: "18px", height: "16px" }}
