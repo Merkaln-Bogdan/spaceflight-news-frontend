@@ -1,7 +1,8 @@
 import { SvgIcon as ASvgIcon } from "@mui/material";
+import { FunctionComponent, SVGProps } from "react";
 
 type SvgIconProps = {
-  children: React.ReactNode;
+  children: FunctionComponent<SVGProps<SVGSVGElement>>;
   styles?: object;
   viewbox?: string;
 };
@@ -18,9 +19,9 @@ const SvgIcon = (props: SvgIconProps): React.ReactElement => {
     <ASvgIcon
       viewBox={viewbox}
       sx={{ width: "12px", heigth: "10px", m: "0 5px", ...styles }}
-    >
-      {children}
-    </ASvgIcon>
+      component={children}
+      htmlColor="#ffffff"
+    />
   );
 };
 

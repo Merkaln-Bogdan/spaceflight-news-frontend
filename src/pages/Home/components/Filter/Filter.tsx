@@ -26,7 +26,7 @@ const Filter = (props: FilterProps): React.ReactElement => {
   useFilter(setFilter, data, values);
   return (
     <Box>
-      <Text>Filter by keywords</Text>
+      <Text styles={{ fontWeight: 600 }}>Filter by keywords</Text>
       <TextField
         id="outlined-password-input"
         onChange={(e) => setValues(e.target.value)}

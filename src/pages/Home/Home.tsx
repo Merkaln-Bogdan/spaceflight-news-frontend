@@ -29,7 +29,14 @@ const HomePage = (): React.ReactElement => {
       />
 
       {filterValue && (
-        <Text styles={{ mb: "45px", mt: 2, borderBottom: "1px solid #eaeaea" }}>
+        <Text
+          styles={{
+            mb: "45px",
+            mt: 2,
+            borderBottom: "1px solid #eaeaea",
+            fontWeight: 600,
+          }}
+        >
           Results: {filteredArticles.length}
         </Text>
       )}

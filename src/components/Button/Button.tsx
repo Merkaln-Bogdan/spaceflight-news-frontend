@@ -16,7 +16,7 @@ const Button = (props: ButtonProps): React.ReactElement => {
         display: "flex",
         justifyContent: "center",
         textTransform: "none",
-        fontWeight: 700,
+        fontWeight: 600,
         color: "inherit",
         ...styles,
       }}
