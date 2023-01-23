@@ -2,7 +2,7 @@ import moment from "moment";
 import Highlighter from "react-highlight-words";
 import { Link } from "react-router-dom";
 
-import { Card, CardActions, CardContent, CardMedia } from "@mui/material";
+import { Card, CardContent, CardMedia } from "@mui/material";
 
 import { SvgIcon } from "components/SvgIcon";
 import { Button } from "components/Button";
@@ -34,7 +34,7 @@ const Article = (props: ArticleProps) => {
         sx={{
           position: "relative",
           maxWidth: 400,
-          height: 530,
+          height: 630,
           boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.05)",
         }}
       >
@@ -49,7 +49,15 @@ const Article = (props: ArticleProps) => {
             </SvgIcon>
             {moment(updatedAt).format("MMMM Do YYYY")}
           </Text>
-          <Text styles={{ maxHeight: "90px", mt: "24px", overflow: "hidden" }}>
+
+          <Text
+            styles={{
+              maxHeight: "175px",
+              mt: "24px",
+              overflow: "hidden",
+              fontSize: "24px",
+            }}
+          >
             <Highlighter
               highlightClassName="YourHighlightClass"
               searchWords={searchValues.split(" ")}
@@ -57,6 +65,7 @@ const Article = (props: ArticleProps) => {
               textToHighlight={truncate(title)}
             />
           </Text>
+
           <Text variant="body2" styles={{ m: "20px 0" }}>
             <Highlighter
               highlightClassName="YourHighlightClass"
@@ -65,13 +74,12 @@ const Article = (props: ArticleProps) => {
               textToHighlight={truncate(summary)}
             />
           </Text>
-        </CardContent>
-        <CardActions>
+
           <Button styles={{ position: "absolute", bottom: 25 }}>
             Read more
             <SvgIcon>{rightArrow}</SvgIcon>
           </Button>
-        </CardActions>
+        </CardContent>
       </Card>
     </Link>
   );
